@@ -7,9 +7,9 @@
    * [라이브러리 다운로드](#라이브러리-다운로드)
    * [라이브러리 등록](#라이브러리-등록) 
    * [Tnk 객체 초기화](#tnk-객체-초기화)
-     * [초기화 API를 호출하는 방법]()
-     * [info.plist 파일에 APP_ID를 설정하는 방법]()
-   * [App Transport Security 설정]()
+     * [초기화 API를 호출하는 방법](#초기화-api를-호출하는-방법)
+     * [info.plist 파일에 APP_ID를 설정하는 방법](#infoplist-파일에-app_id를-설정하는-방법)
+   * [App Transport Security 설정](#app-transport-security-설정)
    
 2. [Publisher API](#2-publisher-api)
 
@@ -54,7 +54,7 @@
 
 ### 라이브러리 다운로드
 
-**[SDK Download v4.21](#http://cdn1.tnkfactory.com/tnk/sdk/tnkad_sdk_ios_v4.21.zip)**
+**[][SDK Download v4.21](http://cdn1.tnkfactory.com/tnk/sdk/tnkad_sdk_ios_v4.21.zip)]**
 
 ### 라이브러리 등록
 
