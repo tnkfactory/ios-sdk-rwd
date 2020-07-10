@@ -14,5 +14,16 @@ TnkAd SDK는 Tnk의 광고 네트워크 상에서 광고앱 이나 매체앱을 
 
 ### Update Notice
 
-* 2020.07.10
+* 2020.07.07 
+  * v4.21 업데이트
+    *  오퍼월 처음 띄우는 시점에 개인정보 수집 동의 창 띄우도록 기능 추가
+* 2019.12.30
+  * v4.20 업데이트
+    * 오퍼월 UI Autolayout 으로 재구현
+    * 내부 기능 개선
+* 2019.11.28
+  * v4.19
+    * 보상형 광고리스트(오퍼월) 기능 추가
+      * Header 영역 커스터마이징 기능 추가 : [TnkSession sharedInstance].adListSectionHeaderView = UIView 지정
+      * Modal 로 띄울 경우 닫기버튼에 이미지 설정 기능 추가 : [TnkSession sharedInstance].headerCloseButtonImage = UIImage 지정
 

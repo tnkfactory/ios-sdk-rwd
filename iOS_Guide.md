@@ -51,6 +51,10 @@
 
 ## 1. SDK 설정하기
 
+### 라이브러리 다운로드
+
+[SDK Download v4.21](#http://cdn1.tnkfactory.com/tnk/sdk/tnkad_sdk_ios_v4.21.zip)
+
 ### 라이브러리 등록
 
 TnkAd SDK를 사용하기 위해서는 다운 받으신 Tnk SDK내에 들어있는 
