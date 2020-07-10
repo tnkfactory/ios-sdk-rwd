@@ -4,6 +4,7 @@
 
 1. [SDK 설정하기](#1-sdk-설정하기)
 
+   * [라이브러리 다운로드](#라이브러리-다운로드)
    * [라이브러리 등록](#라이브러리-등록) 
    * [Tnk 객체 초기화](#tnk-객체-초기화)
      * [초기화 API를 호출하는 방법]()
@@ -53,7 +54,7 @@
 
 ### 라이브러리 다운로드
 
-[SDK Download v4.21](#http://cdn1.tnkfactory.com/tnk/sdk/tnkad_sdk_ios_v4.21.zip)
+**[SDK Download v4.21](#http://cdn1.tnkfactory.com/tnk/sdk/tnkad_sdk_ios_v4.21.zip)**
 
 ### 라이브러리 등록
 
