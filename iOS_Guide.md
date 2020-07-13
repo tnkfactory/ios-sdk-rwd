@@ -48,16 +48,16 @@
       * [광고 상세 화면의 스타일 설정](#광고-상세-화면의-스타일-설정)
    * [적용예시](#적용예시-8)
    
-3. [Analytics Report]
+3. [Analytics Report](#3-analytics-report)
 
-   - [기본 설정]
-   - [필수 호출]
-     - [TnkSession - applicationStarted]
-   - [사용자 활동 분석]
-     - [TnkSession - actionCompleted]
-   - [구매 활동 분석]
-     - [TnkSession - buyCompleted]
-   - [사용자 정보 설정]
+   - [기본 설정](#기본-설정)
+   - [필수 호출](#필수-호출)
+     - [TnkSession - applicationStarted](#tnksession---applicationstarted)
+   - [사용자 활동 분석](#사용자-활동-분석)
+     - [TnkSession - actionCompleted](#tnksession---actioncompleted)
+   - [구매 활동 분석](#구매-활동-분석)
+     - [TnkSession - buyCompleted](#tnksession---buycompleted)
+   - [사용자 정보 설정](#사용자-정보-설정)
 
 
 
