@@ -19,12 +19,12 @@
      * [Method](#method)
      * [Parameters](#parameters)
      * [적용예시](#적용예시)
-   * [TnkSession - showAdList~:title]()
+   * [TnkSession - showAdList~:title](#tnksession---showadlisttitle)
      * [Method](#method-1)
      * [Description](#description)
      * [Parameters](#parameters-1)
      * [적용예시](#적용예시-1)
-   * [TnkAdListView]()
+   * [TnkAdListView](#tnkadlistview)
      * [Method](#method-2)
      * [Description](#description-1)
      * [Parameters](#parameters-2)
@@ -32,21 +32,21 @@
 
    나. [포인트 조회 및 인출](#나-포인트-조회-및-인출)
 
-      * [TnkSession - queryPoint](#tnksessionquerypoint)
+      * [TnkSession - queryPoint](#tnksession---querypoint)
 
-   * [TnkSession - purchaseItem](#tnksessionpurchaseitem)
-   * [TnkSession - withdrawPoints](#tnksessionwithdrawpoints)
+   * [TnkSession - purchaseItem](#tnksession---purchaseitem)
+   * [TnkSession - withdrawPoints](#tnksession---withdrawpoints)
 
    다. [그밖의 기능들](#다-그밖의-기능들)
 
-   * [TnkSession - queryPublishState](#tnksessionquerypublishstate)
-   * [TnkSession - queryAdvertiseCount](#tnksessionqueryadvertisecount)
+   * [TnkSession - queryPublishState](#tnksession---querypublishstate)
+   * [TnkSession - queryAdvertiseCount](#tnksession---queryadvertisecount)
 
-   라. [스타일 설정하기](#라-디자인-변경하기)
+   라. [스타일 설정하기](#라-스타일-설정하기)
 
-     * [광고 목록 스타일 설정]()
-      * [광고 상세 화면의 스타일 설정]()
-           * [적용예시]()
+     * [광고 목록 스타일 설정](#광고-목록-스타일-설정)
+      * [광고 상세 화면의 스타일 설정](#광고-상세-화면의-스타일-설정)
+   * [적용예시](#적용예시-8)
 
 
 
@@ -667,7 +667,7 @@ Tnk SDK는 광고 목록 및 상세 화면의 색상이나 이미지 등을 변�
 - (void) setDetailButtonImageHighlight: (UIImage *) image; // 상세화면 버튼 눌렸을 때 이미지를 지정
 - (void) setDetailButtonTextColor: (UIColor *) color; // 상세화면 버튼 텍스트 색상을 지정
 
-##### 적용예시
+#### 적용예시
 
 ```objective-c
   // set styles
