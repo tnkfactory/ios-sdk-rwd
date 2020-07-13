@@ -47,6 +47,17 @@
      * [광고 목록 스타일 설정](#광고-목록-스타일-설정)
       * [광고 상세 화면의 스타일 설정](#광고-상세-화면의-스타일-설정)
    * [적용예시](#적용예시-8)
+   
+3. [Analytics Report]
+
+   - [기본 설정]
+   - [필수 호출]
+     - [TnkSession - applicationStarted]
+   - [사용자 활동 분석]
+     - [TnkSession - actionCompleted]
+   - [구매 활동 분석]
+     - [TnkSession - buyCompleted]
+   - [사용자 정보 설정]
 
 
 
@@ -54,7 +65,7 @@
 
 ### 라이브러리 다운로드
 
-**[][SDK Download v4.21](http://cdn1.tnkfactory.com/tnk/sdk/tnkad_sdk_ios_v4.21.zip)]**
+**[[SDK Download v4.21](http://cdn1.tnkfactory.com/tnk/sdk/tnkad_sdk_ios_v4.21.zip)]**
 
 ### 라이브러리 등록
 
@@ -687,3 +698,150 @@ UIImage *detailButtonNormal = [UIImage imageNamed:@"detail_bt_bg.png"];
 UIImage *stretchableDetailButtonNormal = [detailButtonNormal stretchableImageWithLeftCapWidth:10 topCapHeight:0];
 [[TnkSession sharedInstance] setDetailButtonImageNormal:stretchableDetailButtonNormal];
 ```
+
+## 3. Analytics Report
+
+Analytics 적용을 위해서는 Tnk 사이트에서 앱 등록 및 XCode 프로젝트 상의 SDK 관련 설정이 우선 선행되어야합니다.
+
+[[SDK 설정하기](#1-sdk-설정하기)]의 내용을 우선 확인해주세요.
+
+**\* iOS 에서는 아직 유입경로별 분석 기능은 제공되지 않습니다.**
+
+### 기본 설정
+
+Xcode 프로젝트에 TnkAd 라이브러리 등록 및 관련 Framework 들을 모두 등록하셨다면, Application Delegate 내의 applicationDidFinishLaunchingWithOption 메소드 내에 아래와 같이 TnkSession 객체의 초기화 로직을 넣어주십시요.
+
+ * Tnk 사이트에서 앱 등록하면 상단에 App ID 가 나타납니다. 이 값을 아래 초기화 로직의 your-application-id-from-tnk-site 부분에 넣어주셔야합니다.
+ * Tracking 기능을 끄시려면 TrackingEnabled 를 NO 로 설정하세요. 디폴트 값은 YES 입니다. 
+
+#### Sample Code
+
+```objective-c
+#import "tnksdk.h"
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    // Tnk 초기화
+    [TnkSession initInstance:@"your-application-id-from-tnk-site"];
+
+    // Tracking on/off
+    [[TnkSession sharedInstance] setTrackingEnabled:YES];
+}
+```
+
+### 필수 호출
+
+앱이 실행되는 시점에 TnkSession 객체의 applicationStarted 를 호출합니다. 필수적으로 호출해야하는 API 이며 이것만으로도 사용자 활동 분석을 제외한 대부분의 분석 데이터를 얻으실 수 있습니다.
+
+#### TnkSession - applicationStarted
+
+##### Method
+
+- (void) applicationStarted
+
+##### Description
+
+앱이 실행되는 시점에 호출합니다. 다른 API 보다 가장 먼저 호출되어야 합니다. 
+일반적으로 AppDelegate.m 내의 application:didFinishLaunchingWithOptions: 메소드내에 TnkSession 객체 초기화 이후에 호출합니다.
+
+##### applicationStared sample
+
+```objective-c
+#import "tnksdk.h"
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    // Tnk 초기화
+    [TnkSession initInstance:@"your-application-id-from-tnk-site"];
+
+    // 실행시점에 호출
+    [[TnkSession sharedInstance] applicationStarted];
+}
+```
+
+### 사용자 활동 분석
+
+사용자가 앱을 설치하고 처음 실행했을 때 어떤 행동을 취하는지 분석하고자 할 때 아래의 API를 사용합니다.
+예를 들어 로그인, 아이템 구매, 친구 추천 등의 행동이 이루어 질때 해당 행동에 대한 구분자와 함께 호출해주시면 사용자가 어떤 패턴으로 앱을 이용하는지 또는 어떤 단계에서 많이 이탈하는지 등의 분석이 가능해집니다.
+
+#### TnkSession - actionCompleted
+
+##### Method
+
+- (void) actionCompleted:(NSString *)actionName
+
+##### Description
+
+사용자의 특정 액션 발생시 호출합니다.
+동일 액션에 대해서는 최초 발생시에만 데이터가 수집됩니다.
+
+##### Parameters
+
+| 파라메터 명칭 | 내용                                                         |
+| ------------- | ------------------------------------------------------------ |
+| actionName    | 사용자 액션을 구별하기 위한 문자열 (예를 들어 "user_login" 등) 사용하시는 actionName 들은 모두 Tnk 사이트의 분석보고서 화면에서 등록되어야 합니다. |
+
+##### actionCompleted Samples
+
+```objective-c
+// 추가 데이터 다운로드 완료시 
+[[TnkSession sharedInstance] actionCompleted:@"resource_loaded"];
+
+// 회원 가입 완료시 
+[[TnkSession sharedInstance] actionCompleted:@"signup_done"];
+
+// 프로필 작성 완료시 
+[[TnkSession sharedInstance] actionCompleted:@"profile_entered"];
+
+// 친구 추천시 
+[[TnkSession sharedInstance] actionCompleted:@"friend_invite"];
+```
+
+### 구매 활동 분석
+
+사용자가 유료 구매 등의 활동을 하는 경우 이에 대한 분석데이터를 얻고자 할 경우에는 아래의 API를 사용합니다. 
+구매활동 분석 API 적용시에는 유입경로별로 구매횟수와 구매 사용자 수 파악이 가능하며, 하루 사용자 중에서 몇명의 유저가 구매 활동을 하였는 지 또 사용자가 앱을 처음 실행한 후 얼마정도가 지나야 구매활동을 하는지 등의 데이터 분석이 가능합니다. 분석 보고서에서 제공하는 데이터에 각 아이템별 가격을 대입시키면 ARPU 및 ARPPU 값도 산출하실 수 있습니다.
+
+#### TnkSession - buyCompleted
+
+##### Method
+
+- (void) buyCompleted:(NSString *)itemName
+
+##### Description
+
+사용자가 유료 구매를 완료하였을 때 호출합니다.
+
+##### Parameters
+
+| 파라메터 명칭 | 내용                                                        |
+| ------------- | ----------------------------------------------------------- |
+| itemName      | 구매한 item을 구별하기 위한 문자열 (예를 들어 "item_01" 등) |
+
+##### buyCompleted Samples
+
+```objective-c
+// item_01 구매 완료시 
+[[TnkSession sharedInstance] buyCompleted:@"item_01"];
+
+//item_02 구매 완료시 
+[[TnkSession sharedInstance] buyCompleted:@"item_02"];
+```
+
+### 사용자 정보 설정
+
+사용자의 성별 및 나이 정보를 설정하시면 보고서에서 해당 내용이 반영되어 추가적인 데이터를 확인하실 수 있습니다.
+
+#### Setting Users Info
+
+```objective-c
+// 나이 설정 
+[[TnkSession sharedInstance] setUserAge:33];
+
+// 성별 설정 (남) 
+[[TnkSession sharedInstance] setUserGender:TNK_CODE_MALE];
+
+// 성별 설정 (여) 
+[[TnkSession sharedInstance] setUserGender:TNK_CODE_FEMALE];
+```
+
