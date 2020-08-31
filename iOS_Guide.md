@@ -49,11 +49,68 @@
    * [적용예시](#적용예시-8)
    
 
+## iOS14 대응 SDK 안내
+
+### 라이브러리 다운로드
+
+**[[SDK Download v4.22b](http://cdn1.tnkfactory.com/tnk/sdk/tnkad_sdk_ios_v4.22b.zip)]**
+
+- iOS14 버전부터는 광고 추적을 위한 IDFA 값을 획득하기 위하여는 명시적인 사용자 동의가 필요합니다.
+
+- 사용자 동의를 받은 후에 오퍼월을 사용할 수 있도록 기능이 수정된 SDK(beta버전) 를 배포합니다.
+
+- 위 SDK 를 적용하기 위해서는 XCode 14 Beta 버전을 사용하여 빌드하셔야합니다.
+
+- 향후 iOS14와 XCode14가 정식 출시되는 시점에 SDK 정식버전을 출시하겠습니다.
+
+### 적용 방법
+
+##### 1) 위 SDK를 기존 SDK와 교체 후 아래의 프레임워크 2개를 추가합니다.
+
+- AppTrackingTransparency.framework : 앱추적 동의 팝업
+- StoreKit.framework : AppStore 이동을 위한 기능 제공
+
+![Guide_07](./img/Guide_07.png)
+
+##### 2) info.plist 파일에 "Privacy - Tracking Usage Description" 을 추가합니다. 추가되는 문구는 앱 추적 동의 팝업 창에 노출됩니다.
+
+![Guide_08](./img/Guide_08.png)
+
+### 오퍼월의 처리 흐름
+
+오퍼월을 처음 사용하는 시점에 아래와 같이 개인정보 수집동의 창이 뜹니다. 오퍼월을 사용하고 있는 유저들도 위 SDK로 업데이트후에는 다시 동의 창이 뜹니다.
+
+![Guide_09](./img/Guide_09.jpg)
+
+수집동의하는 유저에게 앱추적 동의 팝업을 다시 띄웁니다. 앱추적 동의는 iOS14에서 제공하는 기능으로 여기에서 사용자가 동의를 해야만 IDFA 값을 수집할 수 있습니다.
+
+![Guide_10](./img/Guide_10.jpg)
+
+앱추적 동의는 유저가 한번 선택을 하면 다시 선택할 수가 없습니다. (앱 삭제후 재설치를 해야 가능)
+
+그러므로 앱추적 동의 팝업전에 사용자에게 개인정보 수집동의 안내를 하고 여기에 동의한 유저에게만 앱추적 동의 팝업을 띄우도록 하였습니다.
+
+앱추적 동의에 거부한 유저에게는 오퍼월 사용불가 안내 팝업을 띄웁니다.
+
+![Guide_11](./img/Guide_11.jpg)
+
+앱 추적을 동의한 유저에게만 광고 리스트가 노출 됩니다.
+
+![Guide_12](./img/Guide_12.jpg)
+
+실행형/액션형 광고는 설치한 광고앱에서도 사용자가 앱추적 동의를 해야합니다. 이를 위하여 앱스토어 이동전에 안내 팝업을 띄우도록 하였습니다.
+
+![Guide_13](./img/Guide_13.jpg)
+
+
+
+
+
 ## 1. SDK 설정하기
 
 ### 라이브러리 다운로드
 
-**[[SDK Download v4.21](http://cdn1.tnkfactory.com/tnk/sdk/tnkad_sdk_ios_v4.21.zip)]**
+**[[SDK Download v4.22b](http://cdn1.tnkfactory.com/tnk/sdk/tnkad_sdk_ios_v4.22b.zip)]**
 
 ### 라이브러리 등록
 
