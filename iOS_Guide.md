@@ -80,6 +80,112 @@ TnkAd SDK를 사용하기 위해서는 다운 받으신 Tnk SDK내에 들어있�
 
 ![Guide_08](./img/Guide_08.png)
 
+##### info.plists 파일에 아래의 SKAdNetwork ID 목록을 추가합니다. 이 내용은 iOS14 부터 추가된 내용이며 자세한 내용은 아래 링크에서 확인하실 수 있습니다.
+
+Configuring the Participating Apps https://developer.apple.com/documentation/storekit/skadnetwork/configuring_the_participating_apps
+
+```
+<key>SKAdNetworkItems</key>
+<array>
+  <dict>
+    <key>SKAdNetworkIdentifier</key>
+    <string>2U9PT9HC89.skadnetwork</string>
+  <dict/>
+  <dict>
+    <key>SKAdNetworkIdentifier</key>
+    <string>44jx6755aq.skadnetwork</string>
+  <dict/>
+  <dict>
+    <key>SKAdNetworkIdentifier</key>
+    <string>4FZDC2EVR5.skadnetwork</string>
+  <dict/>
+  <dict>
+    <key>SKAdNetworkIdentifier</key>
+    <string>4PFYVQ9L8R.skadnetwork</string>
+  <dict/>
+  <dict>
+    <key>SKAdNetworkIdentifier</key>
+    <string>737z793b9f.skadnetwork</string>
+  <dict/>
+  <dict>
+    <key>SKAdNetworkIdentifier</key>
+    <string>7UG5ZH24HU.skadnetwork</string>
+  <dict/>
+  <dict>
+    <key>SKAdNetworkIdentifier</key>
+    <string>8s468mfl3y.skadnetwork</string>
+  <dict/>
+  <dict>
+    <key>SKAdNetworkIdentifier</key>
+    <string>9RD848Q2BZ.skadnetwork</string>
+  <dict/>
+  <dict>
+    <key>SKAdNetworkIdentifier</key>
+    <string>9T245VHMPL.skadnetwork</string>
+  <dict/>
+  <dict>
+    <key>SKAdNetworkIdentifier</key>
+    <string>av6w8kgt66.skadnetwork</string>
+  <dict/>
+  <dict>
+    <key>SKAdNetworkIdentifier</key>
+    <string>c6k4g5qg8m.skadnetwork</string>
+  <dict/>
+  <dict>
+    <key>SKAdNetworkIdentifier</key>
+    <string>CJ5566H2GA.skadnetwork</string>
+  <dict/>
+  <dict>
+    <key>SKAdNetworkIdentifier</key>
+    <string>F38H382JLK.skadnetwork</string>
+  <dict/>
+  <dict>
+    <key>SKAdNetworkIdentifier</key>
+    <string>GLQZH8VGBY.skadnetwork</string>
+  <dict/>
+  <dict>
+    <key>SKAdNetworkIdentifier</key>
+    <string>hs6bdukanm.skadnetwork</string>
+  <dict/>
+  <dict>
+    <key>SKAdNetworkIdentifier</key>
+    <string>mlmmfzh3r3.skadnetwork</string>
+  <dict/>
+  <dict>
+    <key>SKAdNetworkIdentifier</key>
+    <string>prcb7njmu6.skadnetwork</string>
+  <dict/>
+  <dict>
+    <key>SKAdNetworkIdentifier</key>
+    <string>T38B2KH725.skadnetwork</string>
+  <dict/>
+  <dict>
+    <key>SKAdNetworkIdentifier</key>
+    <string>TL55SBB4FM.skadnetwork</string>
+  <dict/>
+  <dict>
+    <key>SKAdNetworkIdentifier</key>
+    <string>W9Q455WK68.skadnetwork</string>
+  <dict/>
+  <dict>
+    <key>SKAdNetworkIdentifier</key>
+    <string>wg4vff78zm.skadnetwork</string>
+  <dict/>
+  <dict>
+    <key>SKAdNetworkIdentifier</key>
+    <string>YCLNXRL5PM.skadnetwork</string>
+  <dict/>
+  <dict>
+    <key>SKAdNetworkIdentifier</key>
+    <string>ydx93a7ass.skadnetwork</string>
+  <dict/>
+    <dict>
+    <key>SKAdNetworkIdentifier</key>
+    <string>gvmwg8q7h5.skadnetwork</string>
+  <dict/>
+</array>
+```
+
 ### 오퍼월의 처리 흐름
 
 #### 오퍼월을 처음 사용하는 시점에 아래와 같이 개인정보 수집동의 창이 뜹니다. 오퍼월을 사용하고 있는 유저들도 위 SDK로 업데이트후에는 다시 동의 창이 뜹니다.
