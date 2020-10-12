@@ -1,17 +1,11 @@
 # Tnkfactory SDK Rwd
 
 ## 목차
-
-[iOS14 대응 SDK 안내](#ios14-대응-sdk-안내)
-
-* [라이브러리 다운로드](#라이브러리-다운로드)
-* [적용방법](#적용-방법)
-* [오퍼월의 처리 흐름](#오퍼월의-처리-흐름)
-
 1. [SDK 설정하기](#1-sdk-설정하기)
 
    * [라이브러리 다운로드](#라이브러리-다운로드-1)
    * [라이브러리 등록](#라이브러리-등록) 
+   * [오퍼월의 처리 흐름](#오퍼월의-처리-흐름)
    * [Tnk 객체 초기화](#tnk-객체-초기화)
      * [초기화 API를 호출하는 방법](#초기화-api를-호출하는-방법)
      * [info.plist 파일에 APP_ID를 설정하는 방법](#infoplist-파일에-app_id를-설정하는-방법)
@@ -54,31 +48,34 @@
       * [광고 상세 화면의 스타일 설정](#광고-상세-화면의-스타일-설정)
    * [적용예시](#적용예시-8)
 
-
-## iOS14 대응 SDK 안내
+## 1. SDK 설정하기
 
 ### 라이브러리 다운로드
 
-**[[SDK Download v4.22b](http://cdn1.tnkfactory.com/tnk/sdk/tnkad_sdk_ios_v4.22b.zip)]**
+**[[SDK Download v4.23](http://cdn1.tnkfactory.com/tnk/sdk/tnkad_sdk_ios_v4.23.zip)]**
 
-- iOS14 버전부터는 광고 추적을 위한 IDFA 값을 획득하기 위하여는 명시적인 사용자 동의가 필요합니다.
+### 라이브러리 등록
 
-- 사용자 동의를 받은 후에 오퍼월을 사용할 수 있도록 기능이 수정된 SDK(beta버전) 를 배포합니다.
+TnkAd SDK를 사용하기 위해서는 다운 받으신 Tnk SDK내에 들어있는 
 
-- 위 SDK 를 적용하기 위해서는 XCode 12 Beta 버전을 사용하여 빌드하셔야합니다.
+- libtnksdk.a 파일과 tnksdk.h 파일을 XCode 프로젝트에 추가하셔야합니다.
+- 그리고 TnkAd SDK에서 필요로하는 다음의 라이브러리 들을 같이 XCode 프로젝트에 추가해주시기 바랍니다.
 
-- 향후 iOS14와 XCode12가 정식 출시되는 시점에 SDK 정식버전을 출시하겠습니다.
-
-### 적용 방법
-
-##### 1) 위 SDK를 기존 SDK와 교체 후 아래의 프레임워크 2개를 추가합니다.
-
-- AppTrackingTransparency.framework : 앱추적 동의 팝업
-- StoreKit.framework : AppStore 이동을 위한 기능 제공
+| 라이브러리                    | 용도                                                         |
+| ----------------------------- | ------------------------------------------------------------ |
+| libtnksdk.a                   | TnkAd SDK 라이브러리             |
+| libz.tbd           | 압축라이브러리 (TnkAd SDK가 서버통신시 사용함)    |
+| MediaPlayer.framework | 동영상 광고 표시를 위하여 사용됨              |
+| AdSupport.framework | IdfA 값 획득을 위하여 사용됨 (반드시 Optional 모드로 추가해야 한다.) |
+| SystemConfiguration.framework | Wifi 연결상태를 확인하기 위하여 사용됨 |
+| AppTrackingTransparency.framework | 앱 추적 동의 팝업 |
+| StoreKit.framework | AppStore 이동을 위한 기능 제공 |
+**중요) 앱스토어 정책상 앱 보상형광고가 노출되는 경우 검수가 되지 않습니다.** 
+**보상형 매체로 사용하시는 경우에는 앱 광고가 노출되지 않도록 앱스토어 검수전에 매체 설정이 필요하므로 사전에 저희쪽에 문의해주시면 안내해드리겠습니다.**
 
 ![Guide_07](./img/Guide_07.png)
 
-##### 2) info.plist 파일에 "Privacy - Tracking Usage Description" 을 추가합니다. 추가되는 문구는 앱 추적 동의 팝업 창에 노출됩니다.
+##### info.plist 파일에 "Privacy - Tracking Usage Description" 을 추가합니다. 추가되는 문구는 앱 추적 동의 팝업 창에 노출됩니다.
 
 ![Guide_08](./img/Guide_08.png)
 
@@ -107,32 +104,6 @@
 #### 실행형/액션형 광고는 설치한 광고앱에서도 사용자가 앱추적 동의를 해야합니다. 이를 위하여 앱스토어 이동전에 안내 팝업을 띄우도록 하였습니다.
 
 ![Guide_13](./img/Guide_13.jpg)
-
-## 1. SDK 설정하기
-
-### 라이브러리 다운로드
-
-**[[SDK Download v4.22b](http://cdn1.tnkfactory.com/tnk/sdk/tnkad_sdk_ios_v4.22b.zip)]**
-
-### 라이브러리 등록
-
-TnkAd SDK를 사용하기 위해서는 다운 받으신 Tnk SDK내에 들어있는 
-
-- libtnksdk.a 파일과 tnksdk.h 파일을 XCode 프로젝트에 추가하셔야합니다.
-- 그리고 TnkAd SDK에서 필요로하는 다음의 라이브러리 들을 같이 XCode 프로젝트에 추가해주시기 바랍니다.
-
-| 라이브러리                    | 용도                                                         |
-| ----------------------------- | ------------------------------------------------------------ |
-| libtnksdk.a                   | TnkAd SDK 라이브러리                                         |
-| libz.tbd                      | 압축라이브러리 (TnkAd SDK가 서버통신시 사용함)               |
-| MediaPlayer.framework         | 동영상 광고 표시를 위하여 사용됨                             |
-| AdSupport.framework           | IdfA 값 획득을 위하여 사용됨 (반드시 Optional 모드로 추가해야 한다.) |
-| SystemConfiguration.framework | Wifi 연결상태를 확인하기 위하여 사용됨                       |
-
-**중요) 앱스토어 정책상 앱 보상형광고가 노출되는 경우 검수가 되지 않습니다.** 
-**보상형 매체로 사용하시는 경우에는 앱 광고가 노출되지 않도록 앱스토어 검수전에 매체 설정이 필요하므로 사전에 저희쪽에 문의해주시면 안내해드리겠습니다.**
-
-![Guide_01](./img/Guide_01.jpg)
 
 ### Tnk 객체 초기화
 
