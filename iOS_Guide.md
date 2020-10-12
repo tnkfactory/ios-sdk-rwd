@@ -52,7 +52,7 @@
 
 ### 라이브러리 다운로드
 
-**[[SDK Download v4.23](http://cdn1.tnkfactory.com/tnk/sdk/tnkad_sdk_ios_v4.23.zip)]**
+**[[SDK Download v4.23](./sdk/tnkad_sdk_ios_v4.23.zip)]**
 
 ### 라이브러리 등록
 
