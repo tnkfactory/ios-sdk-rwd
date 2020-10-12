@@ -68,8 +68,9 @@ TnkAd SDK를 사용하기 위해서는 다운 받으신 Tnk SDK내에 들어있�
 | MediaPlayer.framework | 동영상 광고 표시를 위하여 사용됨              |
 | AdSupport.framework | IdfA 값 획득을 위하여 사용됨 (반드시 Optional 모드로 추가해야 한다.) |
 | SystemConfiguration.framework | Wifi 연결상태를 확인하기 위하여 사용됨 |
-| AppTrackingTransparency.framework | 앱 추적 동의 팝업 |
-| StoreKit.framework | AppStore 이동을 위한 기능 제공 |
+| AppTrackingTransparency.framework | 앱 추적 동의 팝업              |
+| StoreKit.framework | AppStore 이동을 위한 기능 제공                 |
+
 **중요) 앱스토어 정책상 앱 보상형광고가 노출되는 경우 검수가 되지 않습니다.** 
 **보상형 매체로 사용하시는 경우에는 앱 광고가 노출되지 않도록 앱스토어 검수전에 매체 설정이 필요하므로 사전에 저희쪽에 문의해주시면 안내해드리겠습니다.**
 
