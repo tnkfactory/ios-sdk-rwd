@@ -82,7 +82,7 @@ TnkAd SDK를 사용하기 위해서는 다운 받으신 Tnk SDK내에 들어있�
 
 ##### info.plists 파일에 아래의 SKAdNetwork ID 목록을 추가합니다. 이 내용은 iOS14 부터 추가된 내용이며 자세한 내용은 아래 링크에서 확인하실 수 있습니다.
 
-Configuring the Participating Apps https://developer.apple.com/documentation/storekit/skadnetwork/configuring_the_participating_apps
+[Configuring the Participating Apps](https://developer.apple.com/documentation/storekit/skadnetwork/configuring_the_participating_apps)
 
 ```
 <key>SKAdNetworkItems</key>
