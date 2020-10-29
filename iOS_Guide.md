@@ -54,6 +54,8 @@
 
 **[[SDK Download v4.24](./sdk/tnkad_sdk_ios_v4.24.zip)]**
 
+**[[Unity Plugin Download v4.24](./sdk/tnkad.unitypackage)]**
+
 ### 라이브러리 등록
 
 TnkAd SDK를 사용하기 위해서는 다운 받으신 Tnk SDK내에 들어있는 
