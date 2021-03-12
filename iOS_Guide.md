@@ -772,7 +772,7 @@ Tnk 사이트의 [게시정보]에서 광고 게시 중지를 하게 되면 이�
 
 광고목록 창은 SDK에서 제공하는 기본 스타일을 그대로 사용하셔도 무방하지만, 앱의 UI와 통일감 있도록 스타일을 정의할 수 있습니다.
 
-![Guide_06](./img/Guide_06.jpg)
+![Guide_06](./img/ios_offerwall_customizing.jpg)
 
 Tnk SDK는 광고 목록 및 상세 화면의 색상이나 이미지 등을 변경할 수 있도록 다음과 같은 API를 제공합니다. 모든 API는 TnkSession의 sharedInstance를 호출하여 얻어진 객체를 사용해서 호출해야야 합니다. 
 
