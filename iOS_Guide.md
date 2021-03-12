@@ -780,44 +780,107 @@ Tnk SDK는 광고 목록 및 상세 화면의 색상이나 이미지 등을 변�
 
 #### 광고 목록 스타일 설정
 
-- (void) setTableViewStyle: (UITableViewStyle) style; // UITableViewStylePlain(기본값) 또는 UITableViewStyleGrouped로 설정
-- (void) setHeaderColor: (UIColor *) color; // 상단 타이틀 영역(네비게이션 바)의 배경색상을 지정합니다.
-- (void) setListItemBackgroundColorNormal: (UIColor *) color; // 리스트 항목의 배경 색상을 지정합니다. (Normal 상태의 배경)
-- (void) setListItemBackgroundColorStripe: (UIColor *) color; // 리스트 항목의 배경 색상을 번갈아 다르게 하고자 할경우 지정합니다. (Normal 상태의 배경)
-- (void) setListItemBackgroundColorHighlight: (UIColor *) color; // 리스트 항목이 눌렸을 때의 배경 색상을 지정합니다.
+- (void) setBackgroundColor:(UIColor *)color; // 전체적으로 사용되는 배경색
 
-- (void) setFreeBoxButtonImage: (UIImage *) image; // 무료항목임을 표시하는 tag 이미지를 지정합니다.
-- (void) setPaidBoxButtonImage: (UIImage *) image; // 유료항목임을 표시하는 tag 이미지를 지정합니다.
-- (void) setConfirmBoxButtonImage: (UIImage *) image; // 설치확인 상태임을 표시하는 tag 이미지를 지정합니다.
+- (void) setHeaderTitle:(NSString *)title; // 광고목록 상단(네비게이션바)에 표시되는 타이틀 문구
+- (void) setHeaderColor:(UIColor *)color; // 상단 타이틀 문구 배경색
+- (void) setHeaderTextColor:(UIColor *)color; // 상단 타이틀 문구 글자색
 
-- (void) setShowAdListFooter: (BOOL) yesno; // 광고리스트 하단의 Footer (버전 및 이용문의 버튼있는 영역)을 숨기거나 보이게 설정합니다.(기본값 :YES)
-- (void) setHeaderHelpButtonImage: (UIImage *) image; // 이미지를 지정하면 해당 이미지를 이용한 이용문의 버튼이 광고리스트 상단 타이틀 영역의 오른쪽에 나타납니다.
+- (void) setHeaderHelpButtonImage:(UIImage *)image; // 광고목록 상단에 문의하기 버튼을 표시하기 위한 이미지
+- (void) setHeaderCloseButtonImage:(UIImage *)image; // 광고목록을 Modal로 띄운경우 닫기버튼용 이미지
+- (void) setHeaderButtonTintColor:(UIColor *)color; // 광고목록의 닫기 버튼의 텍스트 색상
 
+- (void) setListItemBackgroundColorNormal:(UIColor *)color; // 리스트 배경색
+- (void) setListItemBackgroundColorStripe:(UIColor *)color; // 리스트 홀수번째 줄의 배경색을 다르게 할 경우 지정
+- (void) setListItemBackgroundColorHighlight:(UIColor *)color; // 리스트 눌렸을때의 색상
+
+- (void) setTagNormalColor:(UIColor *)color; // 광고 항목의 포인트 표시 영역 : 기본 색상
+- (void) setTagConfirmColor:(UIColor *)color; // 광고 항목의 포인트 표시 영역 : 설치확인 상태인 경우 색상
+- (void) setTagPurchaseColor:(UIColor *)color; // 광고 항목의 포인트 표시 영역 : 구매형 광고의 색상을 다르게 할 경우 지정
+
+- (void) setShowAdListFooter:(BOOL)yesno; // 광고목록 하단에 문의하기 및 SDK 버젼 표시를 위한 Footer 영역 표시여부, 기본값 YES
+
+- (void) setAdListMenuTextColor:(UIColor *)color; // 광고목록 list 영역 섹션해더의 메뉴 글자색상
+- (void) setAdListMenuSelectedColor:(UIColor *)color; // 광고목록 list 영역 섹션해더의 메뉴 글자색상 (selected state)
+- (void) setAdListMenuBackgroundColor:(UIColor *)color; // 광고목록 list 영역 섹션해더의 메뉴 배경색상
+- (void) setAdListSubMenuTextColor:(UIColor *)color; // 광고목록 list 영역 섹션해더의 하위메뉴 글자색상
+- (void) setAdListSubMenuBackgroundColor:(UIColor *)color; // 광고목록 list 영역 섹션해더의 하위메뉴 배경색상
+- (void) setAdListSubMenuPointColor:(UIColor *)color; // 광고목록 list 영역 섹션해더의 하위메뉴 포인트표시용 글자색상
+- (void) setAdListSubMenuPointDesc:(NSString *)title; // 광고목록 list 영역 '지금 획득가능한 포인트' 문구 커스터 마이징
+- (void) setAdListSubMenuPointFormat:(NSString *)title; // 광고목록 list 영역 포인트 표시 포맷문자열, %@ 포함해야함
+- 
 #### 광고 상세 화면의 스타일 설정
 
-- (void) setDetailBackgroundColor: (UIColor *) color; // 상세화면의 전체 바탕 색상을 지정
-- (void) setDetailHeaderBackgroundColor: (UIColor *) color; // 상세화면의 상단 영역 부분의 배경 색상을 지정
-- (void) setDetailButtonImageNormal: (UIImage *) image; // 상세화면 버튼 이미지를 지정 (Normal 상태)
-- (void) setDetailButtonImageHighlight: (UIImage *) image; // 상세화면 버튼 눌렸을 때 이미지를 지정
-- (void) setDetailButtonTextColor: (UIColor *) color; // 상세화면 버튼 텍스트 색상을 지정
+- (void) setDetailHeaderColor:(UIColor *)color;  // 상세화면 네비게이션 바 배경색상 
+- (void) setDetailHeaderTextColor:(UIColor *)color;  // 상세화면 네비게이션 바 글자색상
+- (void) setDetailCloseButtonTintColor:(UIColor *)color; // 닫기 버튼 이미지 또는 문구 색상 
+- (void) setDetailCloseButtonImage:(UIImage *)image; // 보상형광고 상세 화면에서 닫기버튼용 이미지
+- (void) setDetailCloseButtonRight:(BOOL)yesno; // 오른쪽에 닫기 버튼 두기 (기본값 NO)
+
+- (void) setDetailBackgroundColor:(UIColor *)color; // 상새화면 기본 배경색
+- (void) setDetailTextColor:(UIColor *)color; // 상세화면 기본 글자색 
+- (void) setDetailPointColor:(UIColor *)color; // 상세화면 포인트 글자색 
+
+- (void) setDetailButtonImageNormal:(UIImage *)image;  // 상세화면 이동버튼의 기본 이미지
+- (void) setDetailButtonImageHighlight:(UIImage *)image; // 상세화면 이동버튼의 눌렸을때 이미지
+- (void) setDetailButtonTextColor:(UIColor *)color; // 상세화면 이동버튼의 텍스트 색상
+- (void) setDetailButtonLabel:(NSString *)label; // 이동버튼 문구
+
+#### 완전한 커스터마이징
+
+- 색상이나 버튼이미지의 단순 변경이 아니라 화면의 디자인을 자체적으로 구현할 경우 아래의 Factory 클래스를 설정하여 구현할 수 있습니다. Factory 클래스 구현 방법은 별도로 문의 바랍니다.
+
+- (void) setAdItemViewFactory:(AdListItemViewFactory *)factory; // 광고리스트 아이템 뷰 객체 생성용
+- (void) setAdListSectionHeaderView:(UIView *)view; // 광고목록 list 영역의 Section header 를 표시하기 위한 자체 View를 설정
 
 #### 적용예시
 
 ```objective-c
-  // set styles
-[[TnkSession sharedInstance] setHeaderColor:TITLE_BAR_COLOR];
-[[TnkSession sharedInstance] setHeaderTitle:LocalString(@"adlist")];
-[[TnkSession sharedInstance] setDetailBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_detail.png"]]];
-[[TnkSession sharedInstance] setListItemBackgroundColorNormal:[UIColor colorWithPatternImage:[UIImage imageNamed:@"adlist_bg_normal.png"]]];
-[[TnkSession sharedInstance] setListItemBackgroundColorStripe:[UIColor colorWithPatternImage:[UIImage imageNamed:@"adlist_bg_stripe.png"]]];
-[[TnkSession sharedInstance] setListItemBackgroundColorHighlight:[UIColor colorWithPatternImage:[UIImage imageNamed:@"adlist_bg_highlight.png"]]];
-[[TnkSession sharedInstance] setDetailHeaderBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"detail_header_bg.png"]]];
-
-[[TnkSession sharedInstance] setFreeBoxButtonImage:[UIImage imageNamed:@"az_list_bt_free.png"]];
-[[TnkSession sharedInstance] setPaidBoxButtonImage:[UIImage imageNamed:@"az_list_bt_pay.png"]];
-[[TnkSession sharedInstance] setConfirmBoxButtonImage:[UIImage imageNamed:@"az_list_bt_install.png"]];
-
-UIImage *detailButtonNormal = [UIImage imageNamed:@"detail_bt_bg.png"];
-UIImage *stretchableDetailButtonNormal = [detailButtonNormal stretchableImageWithLeftCapWidth:10 topCapHeight:0];
-[[TnkSession sharedInstance] setDetailButtonImageNormal:stretchableDetailButtonNormal];
+- (void) setOfferwallStyle {
+    
+    //
+    // 공통 설정
+    //
+    [TnkSession sharedInstance].adListNavigationBarStyle = UIBarStyleBlack;
+    [TnkSession sharedInstance].adDetailNavigationBarStyle = UIBarStyleDefault;
+    
+    // 오퍼월 상단에 문의하기 버튼을 노출하기 위하여 아래와 같이 버튼이미지를 설정한다.
+    [TnkSession sharedInstance].headerHelpButtonImage = [UIImage imageNamed:@"kidsnote_helpdesk"];
+    // 오퍼월 하단의 문의하기 버튼 영역을 숨기기 위하야 아래와 같이 설정한다.
+    [TnkSession sharedInstance].showAdListFooter = NO;
+    
+    // 오퍼월 상세화면 네비게이션 바 배경색상
+    [TnkSession sharedInstance].detailHeaderColor = [UIColor colorWithRed:(235)/255.0f
+                                                                    green:(246)/255.0f
+                                                                     blue:(255)/255.0f
+                                                                    alpha:(255)/255.0f];
+    [TnkSession sharedInstance].detailHeaderTextColor = [UIColor blackColor];
+    
+    // 네비게이션바의 아이콘 색상은 별도로 설정해야한다.
+    [TnkSession sharedInstance].detailCloseButtonTintColor = [UIColor blackColor];
+    
+    // 오퍼월 상세화면의 닫기 버튼 이미지
+    [TnkSession sharedInstance].detailCloseButtonImage = [UIImage imageNamed:@"kidsnote_detail_close"];
+    // 오퍼월 상세화면의 닫기 버튼을 오른쪽에 둔다.
+    [TnkSession sharedInstance].detailCloseButtonRight = YES;
+    // 오퍼월 상세화면의 이동 버튼 문구
+    [TnkSession sharedInstance].detailButtonLabel = @"캔디 받기";
+    
+    // 오퍼월 섹션 Header 영역에 "지금 바로 받을 수 있는 포인트" 표시하기 위한 custom view 를 설정한다.
+    KidsNoteAdListHeaderView *headerView = (KidsNoteAdListHeaderView *)[[[NSBundle mainBundle] loadNibNamed:@"KidsNoteAdListHeaderView" owner:self options:nil] objectAtIndex:0];
+    headerView.frame = CGRectMake(0, 0, self.view.bounds.size.width, HEADER_HEIGHT);
+    headerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    
+    [TnkSession sharedInstance].adListSectionHeaderView = headerView;
+    
+    // list item 사이의 분리 라인 없애기
+    [TnkSession sharedInstance].tableViewSeparatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    // 커스터마이징용 View 를 생성하기위한 Factory 객체를 설정한다.
+    [TnkSession sharedInstance].adItemViewFactory = [[KidsNoteAdListItemViewFactory alloc] init];
+    
+    // 서버로 총 포인트 조회 요청을 한다. (포인트 업데이트 필요시 마다 호출한다.)
+    [[TnkSession sharedInstance] queryAdvertiseCount:self action:@selector(adCountReceived:point:)];
+    
+}
 ```
