@@ -52,9 +52,9 @@
 
 ### 라이브러리 다운로드
 
-**[[SDK Download v4.29](./sdk/tnkad_sdk_ios_v4.29.zip)]**
+**[[SDK Download v4.31](./sdk/tnkad_sdk_ios_v4.31.zip)]**
 
-**[[Unity Plugin Download v4.29](./sdk/tnkad.unitypackage)]**
+**[[Unity Plugin Download](./sdk/tnkad.unitypackage)]**
 
 ### 라이브러리 등록
 
@@ -808,7 +808,7 @@ Tnk SDK는 광고 목록 및 상세 화면의 색상이나 이미지 등을 변�
 - (void) setAdListSubMenuPointColor:(UIColor *)color; // 광고목록 list 영역 섹션해더의 하위메뉴 포인트표시용 글자색상
 - (void) setAdListSubMenuPointDesc:(NSString *)title; // 광고목록 list 영역 '지금 획득가능한 포인트' 문구 커스터 마이징
 - (void) setAdListSubMenuPointFormat:(NSString *)title; // 광고목록 list 영역 포인트 표시 포맷문자열, %@ 포함해야함
- 
+
 #### 광고 상세 화면의 스타일 설정
 
 - (void) setDetailHeaderColor:(UIColor *)color;  // 상세화면 네비게이션 바 배경색상 
