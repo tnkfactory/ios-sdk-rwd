@@ -59,7 +59,7 @@
 
 ### 라이브러리 다운로드
 
-**[[SDK Download v4.34](./sdk/tnkad_sdk_ios_v4.34.zip)]**
+**[[SDK Download v4.35](./sdk/tnkad_sdk_ios_v4.35.zip)]**
 
 **[[Unity Plugin Download v4.31](./sdk/tnkad.unitypackage)]**
 
