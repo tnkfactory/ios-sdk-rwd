@@ -59,26 +59,22 @@
 
 ### 라이브러리 다운로드
 
-**[[SDK Download v4.35](./sdk/tnkad_sdk_ios_v4.35.zip)]**
+**[[SDK Download v4.35](./sdk/tnkrwd_sdk_ios_v4.35.zip)]**
 
 **[[Unity Plugin Download v4.31](./sdk/tnkad.unitypackage)]**
 
-### 라이브러리 등록
+### 프레임워크 등록
+다운로드받은 SDK 압축파일을 풀면 TnkRwdSdk.xcframework 폴더가 생성됩니다. 해당 폴더를 적용하고자 하는 XCode 프로젝트 폴더로 이동시키세요.
 
-TnkAd SDK를 사용하기 위해서는 다운 받으신 Tnk SDK내에 들어있는 
+폴더를 이동시켰으면 TnkRwdSDK.xcframework 폴더를 XCode 내에 마우스로 드래그합니다. 이후 XCode -> Target -> General -> Frameworks, Libraries, and Embedded Content 항목에 TnkRwdSdk.xcframework 가 있는 것을 확인하시고 Embed 설정을 Embed & Sign 으로 변경합니다.
 
-- libtnksdk.a 파일과 tnksdk.h 파일을 XCode 프로젝트에 추가하셔야합니다.
-- 그리고 TnkAd SDK에서 필요로하는 다음의 라이브러리 들을 같이 XCode 프로젝트에 추가해주시기 바랍니다.
+아래의 이미지를 참고하세요.
+![framework_copy](./img/framework_copy.png)
+![framework_embed](./img/framework_embed.png)
 
-| 라이브러리                    | 용도                                                         |
-| ----------------------------- | ------------------------------------------------------------ |
-| libtnksdk.a                   | TnkAd SDK 라이브러리             |
-| libz.tbd           | 압축라이브러리 (TnkAd SDK가 서버통신시 사용함)    |
-| MediaPlayer.framework | 동영상 광고 표시를 위하여 사용됨              |
-| AdSupport.framework | IdfA 값 획득을 위하여 사용됨 (반드시 Optional 모드로 추가해야 한다.) |
-| SystemConfiguration.framework | Wifi 연결상태를 확인하기 위하여 사용됨 |
-| AppTrackingTransparency.framework | 앱 추적 동의 팝업              |
-| StoreKit.framework | AppStore 이동을 위한 기능 제공                 |
+### Migration 안내
+기존의 lib 파일을 적용하셨다면 해당 libtnksdk.a 파일과 tnksdk.h 헤더파일은 삭제해주세요.
+그리고 #import "tnksdk.h" 로 작성하셨던 코드는 모두 #import <TnkRwdSdk/TnkRwdSdk.h> 로 수정해주세요.
 
 **중요) 앱스토어 정책상 앱 보상형광고가 노출되는 경우 검수가 되지 않습니다.** 
 **보상형 매체로 사용하시는 경우에는 앱 광고가 노출되지 않도록 앱스토어 검수전에 매체 설정이 필요하므로 사전에 저희쪽에 문의해주시면 안내해드리겠습니다.**
