@@ -69,8 +69,8 @@
 폴더를 이동시켰으면 TnkRwdSDK.xcframework 폴더를 XCode 내에 마우스로 드래그합니다. 이후 XCode -> Target -> General -> Frameworks, Libraries, and Embedded Content 항목에 TnkRwdSdk.xcframework 가 있는 것을 확인하시고 Embed 설정을 Embed & Sign 으로 변경합니다.
 
 아래의 이미지를 참고하세요.
-![framework_copy](./img/framework_copy.png)
-![framework_embed](./img/framework_embed.png)
+![tnkrwd_copy](./img/tnkrwd_copy.png)
+![tnkrwd_embed](./img/tnkrwd_embed.png)
 
 ### Migration 안내
 기존의 lib 파일을 적용하셨다면 해당 libtnksdk.a 파일과 tnksdk.h 헤더파일은 삭제해주세요.
