@@ -12,6 +12,8 @@ TnkAd SDK는 Tnk의 광고 네트워크 상에서 광고앱 이나 매체앱을 
 [iOS 가이드 문서](./iOS_Guide.md)
 
 ### Update Notice
+* 2022.04.26
+  - 배포방식을 기존 lib 파일에서 xcframework 로 변경하였습니다.
 * 2021.11.03
   - v4.31 업데이트
     - 내부 버그 수정
