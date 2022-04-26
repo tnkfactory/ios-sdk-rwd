@@ -72,14 +72,13 @@
 ![tnkrwd_copy](./img/tnkrwd_copy.png)
 ![tnkrwd_embed](./img/tnkrwd_embed.png)
 
-### Migration 안내
+##### Migration 안내
 기존의 lib 파일을 적용하셨다면 해당 libtnksdk.a 파일과 tnksdk.h 헤더파일은 삭제해주세요.
+
 그리고 #import "tnksdk.h" 로 작성하셨던 코드는 모두 #import <TnkRwdSdk/TnkRwdSdk.h> 로 수정해주세요.
 
 **중요) 앱스토어 정책상 앱 보상형광고가 노출되는 경우 검수가 되지 않습니다.** 
 **보상형 매체로 사용하시는 경우에는 앱 광고가 노출되지 않도록 앱스토어 검수전에 매체 설정이 필요하므로 사전에 저희쪽에 문의해주시면 안내해드리겠습니다.**
-
-![Guide_07](./img/Guide_07.png)
 
 ##### info.plist 파일에 "Privacy - Tracking Usage Description" 을 추가합니다. 추가되는 문구는 앱 추적 동의 팝업 창에 노출됩니다.
 
