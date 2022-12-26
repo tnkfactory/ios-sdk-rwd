@@ -12,6 +12,10 @@ TnkAd SDK는 Tnk의 광고 네트워크 상에서 광고앱 이나 매체앱을 
 [iOS 가이드 문서](./iOS_Guide.md)
 
 ### Update Notice
+
+* 2022.12.26
+  - v4.42 업데이트
+    - queryAdvertiseCount 성능 개선
 * 2022.10.12
   - v4.40 업데이트
     - 내부 memory leak 버그 수정
