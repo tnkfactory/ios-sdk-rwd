@@ -353,10 +353,15 @@ TnkSession.sharedInstance().setUserName(loginId)
 자신의 앱에서 광고 목록을 띄우기 위하여 TnkSession 객체의 showAdListAsModel:title 또는 showAdListNavigation:title 함수를 사용합니다.
 모달뷰 형태로 광고 목록을 띄워주거나 네비게이션 컨트롤러 방식으로 목록을 띄워줍니다.
 
-##### Method
+##### Method (Objective-C)
 
 - (void) showAdListAsModal: (UIViewController *) viewController title: (NSString *) title
 - (void) showAdListNavigation: (UIViewController *) viewController title: (NSString *) title
+
+##### Method (Swift)
+
+- func showAdList(asModal:UIViewController, title:String)
+- func showAdListNavigation(_ viewController:UIViewController, title:String)
 
 ##### Description
 
@@ -373,12 +378,23 @@ TnkSession 클래스가 제공하는 메소드로서 광고 목록 화면을 띄
 ##### 적용예시
 
 ```objective-c
+// Objective-C
 - (IBAction)showOfferListPressed:(id)sender {
     // 모달 창으로 광고띄우기
     [[TnkSession sharedInstance] showAdListAsModal:self title:@"무료 골드 충전"];
 }
 ```
+```swift
+// Swift
+@IBAction
+func showOfferListPressed(_ sender:Any) {
+    // 모달 창으로 광고 띄우기
+    TnkSession.sharedInstance().showAdList(asModal: self, title: "무료 골드 충전")
 
+    // 네비게이션 Push 로 띄우기
+    TnkSession.sharedInstance().showAdListNavigation(self, title: "무료 골드 충전")
+}
+```
 ![Guide_04](./img/Guide_04.jpg)
 
 #### TnkAdListView
