@@ -329,7 +329,7 @@ Tnk의 SDK를 적용하여 게시앱을 구현하는 것은 크게 3단계로 �
 
 ##### Method (Swift)
 
-func setUserName(_ name:String)
+- func setUserName(_ name:String)
 
 ##### Parameters
 
