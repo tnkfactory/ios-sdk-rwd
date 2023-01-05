@@ -223,6 +223,7 @@ Application Delegate 내의 applicationDidFinishLaunchingWithOption 메소드 �
  **\* APP_ID 값은 Tnk 사이트에서 앱 등록하면 발급받으실 수 있습니다. 이 값을 아래 초기화 로직의 your-application-id-from-tnk-site 부분에 넣어주셔야합니다.**
 
 ```objective-c
+// Objective-C
 #import "tnksdk.h"
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -230,6 +231,26 @@ Application Delegate 내의 applicationDidFinishLaunchingWithOption 메소드 �
     // Tnk 초기화
     [TnkSession initInstance:@"your-application-id-from-tnk-site"];
 
+    // ...
+}
+```
+
+```swift
+// Swift
+import UIKit
+import TnkRwdSdk
+
+@main
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        // 초기화
+        TnkSession.initInstance("your-application-id-from-tnk-site")
+        
+        // ...
+    }
+   
     // ...
 }
 ```
