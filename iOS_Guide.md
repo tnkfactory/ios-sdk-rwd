@@ -438,9 +438,9 @@ TnkAdListView 생성하기
   - (NSTimeInterval) getLastLoadingSeconds;
       - 마지막으로 서버에서 광고를 요청한 시간을 1970.1.1 기준으로 초(second)로 반환합니다.
 
-아래의 예시는 TnkAdListView 를 사용하여 구현한 TestAdListViewController 소스입니다.
+아래의 예시는 TnkAdListView 를 사용하여 구현한 2가지 샘플 소스입니다.
 
-##### AdTitleView 소스
+##### TestAdListViewController 샘플 소스 (Objective-C)
 
 ```objective-c
 // AdTitleView.h
@@ -475,7 +475,6 @@ TnkAdListView 생성하기
 
 ![Guide_05](./img/Guide_05.jpg)
 
-##### TestAdListViewController
 
 ```objective-c
 // TestAdListViewController.h
