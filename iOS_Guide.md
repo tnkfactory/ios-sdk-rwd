@@ -323,9 +323,13 @@ Tnk의 SDK를 적용하여 게시앱을 구현하는 것은 크게 3단계로 �
 
 유저 식별 값을 설정하셔야 이후 사용자가 적립한 포인트를 개발사의 서버로 전달하는 callback 호출 시에  같이 전달받으실 수 있습니다.
 
-##### Method
+##### Method (Objective-C)
 
 - (void) setUserName : (NSString *) userName
+
+##### Method (Swift)
+
+func setUserName(_ name:String)
 
 ##### Parameters
 
@@ -336,7 +340,12 @@ Tnk의 SDK를 적용하여 게시앱을 구현하는 것은 크게 3단계로 �
 ##### 적용예시
 
 ```objective-c
+// Objective-C
 [[TnkSession sharedInstance] setUserName:loginId];
+```
+```swift
+// Swift
+TnkSession.sharedInstance().setUserName(loginId)
 ```
 
 #### TnkSession - showAdList~:title
