@@ -404,6 +404,7 @@ TnkAdListView 는 보상형 광고리스트를 제공하는 UIView 객체입니�
 ##### TnkAdListView interface
 
 ```objective-c
+// Objective-C
 @interface TnkAdListView : UITableView <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, TnkServiceCallback, UIGestureRecognizerDelegate>
 
 - (id) initWithFrame:(CGRect)frame viewController:(UIViewController *)vc;
@@ -413,7 +414,15 @@ TnkAdListView 는 보상형 광고리스트를 제공하는 UIView 객체입니�
 
 @end
 ```
-
+```swift
+// Swift
+public class TnkAdListView {
+func init(frame:CGRect, viewController:UIViewController)
+func loadAdList()
+func updateAdList()
+func getLastLoadingSeconds() -> TimeInterval
+}
+```
 TnkAdListView 생성하기
 
 - (id) initWithFrame: (CGRect) frame viewController: (UIViewController *) vc;
