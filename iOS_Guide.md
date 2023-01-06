@@ -574,7 +574,68 @@ TnkAdListView 생성하기
 ```
 ##### TestOfferwallViewController 샘플 소스 (Swift)
 
-![Guide_05](./img/Guide_05.jpg)
+![testofferwall](./img/testofferwall.jpg)
+
+```swift
+
+import UIKit
+import TnkRwdSdk
+
+class TestOfferwallViewController: UIViewController {
+    @IBOutlet var offerwallView:UIView!
+    @IBOutlet var helpButton:UIButton!
+    @IBOutlet var allPointLabel:UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        
+        // ATT 팝업 처리
+        TnkSession.sharedInstance().showTrackingAgreementPopup(self,
+                                                               agreeAction: { self.addOfferwall() },
+                                                               denyAction: { self.dismiss(animated: true) })
+    }
+    
+    func addOfferwall() {
+
+        TnkSession.sharedInstance().tableViewSeparatorStyle = .none // 리스트 아이튼 사이의 구분선 없에기
+ 
+        if let tnkofferwall = TnkAdListView(frame:offerwallView.frame, viewController:self) {
+
+            if #available(iOS 15.0, *) {
+                tnkofferwall.sectionHeaderTopPadding = 0
+            }
+            
+            offerwallView.addSubview(tnkofferwall)
+            
+            // AutoLayout 적용
+            tnkofferwall.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                tnkofferwall.leftAnchor.constraint(equalTo: self.offerwallView.leftAnchor),
+                tnkofferwall.rightAnchor.constraint(equalTo: self.offerwallView.rightAnchor),
+                tnkofferwall.topAnchor.constraint(equalTo: self.offerwallView.topAnchor),
+                tnkofferwall.bottomAnchor.constraint(equalTo: self.offerwallView.bottomAnchor),
+            ])
+            
+            // 서버에 광고 요청한다.
+            tnkofferwall.loadAdList()
+            
+            // 적립 가능한 포인트 조회
+            TnkSession.sharedInstance().queryAdvertiseCount(self, action: #selector(didReceivedAdvertiseCount(_:_:)))
+        }
+    }
+    
+    @IBAction
+    func didHelpButtonPressed() {
+        TnkUtils.goHelpDeskLink()
+    }
+    
+    @objc
+    func didReceivedAdvertiseCount(_ count:NSNumber, _ point:NSNumber) {
+        self.allPointLabel.text = String(format: "%@ 원", point)
+    }
+}
+```
 
 ### 나. 포인트 조회 및 인출
 
