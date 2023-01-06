@@ -574,7 +574,7 @@ TnkAdListView 생성하기
 ```
 ##### TestOfferwallViewController 샘플 소스 (Swift)
 
-![testofferwall](./img/testofferwall.jpg)
+![testofferwall_xib](./img/testofferwall_xib.jpg)
 
 ```swift
 
