@@ -632,8 +632,137 @@ class TestOfferwallViewController: UIViewController {
     }
 }
 ```
+### 나. 광고 상태 조회
 
-### 나. 포인트 조회 및 인출
+#### TnkSession - queryPublishState
+
+Tnk 사이트의 [게시정보]에서 광고 게시 중지를 하게 되면 이후에는 사용자가 광고 목록 창을 띄워도 광고들이 나타나지 않습니다.
+그러므로 향후 광고 게시를 중지할 경우를 대비하여 화면에 충전소 버튼 자체를 보이지 않게 하는 기능을 갖추는 것이 바람직합니다.
+이를 위하여 현재 게시앱의 광고게시 상태를 조회하는 기능을 제공합니다.
+
+##### [비동기로 호출하기]
+
+###### Method (Objectvie-C)
+
+  - (void) queryPublishState: (id)target action: (SEL) action;
+
+###### Method (Swift)
+
+  - func queryPublishState(_ target:Any, action:Selector)
+
+###### Parameters
+
+| 파라메터 명칭 | 내용                                                         |
+| -------------------------- | --------------------------------------------------- |
+| target | 결과를 받으면 이 객체의 action 메소드가 호출된다.            |
+| action | 결과를 받으면 호출될 메소드를 지정한다. 메소드 호출 시 현재의 게시 상태 값이 파라메터로 전달되므로 메소드는 (NSNumber *) 파라메터를 하나 받을 수 있도록 정의한다.  전달되는 상태값들은 "tnksdk.h" 파일을 참고한다. |
+
+###### 적용예시
+
+```objective-c
+// Objective-C
+- (void) publishStateReceived:(NSNumber *) state {
+    // 상태값에 따라서 충전소 이동 버튼을 보이게 하거나 숨긴다.
+    if ([state integerValue] == TNK_STATE_YES) {
+        // 광고목록 버튼 보이기
+    }
+    else {
+        // 광고목록 버튼 숨기기
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    // 게시앱 상태 조회 (비동기 방식 호출)
+    [[TnkSession sharedInstance] queryPublishState:self action:@selector(publishStateReceived:)];
+}
+```
+```swift
+// Swift
+@IBAction
+func onCheckPubStateButtonClick() {
+    TnkSession.sharedInstance().queryPublishState(self, action:#selector(didPublishStateReceived(state:)))
+}
+
+@objc
+func didPublishStateReceived(state:NSNumber) {
+    NSLog("didPublishStateReceived %@", state)
+    if state == 0 {
+        showOfferwallButton.isHidden = true
+    }
+    else {
+        showOfferwallButton.isHidden = false
+    }
+}
+```
+##### [동기방식으로 호출]
+
+###### Method
+
+- (NSInteger) queryPublishState;
+
+###### Return
+
+- 현재 게시 상태 값을 반환한다. (tnksdk.h 내용 참고)
+
+#### TnkSession - queryAdvertiseCount
+
+광고 게시 상태를 확인하여 충전소 버튼을 보이게하거나 안보이게 하는 것으로도 충분히 좋지만 현재 광고 게시 상태라 하더라도 사용자에게 지급될 수 없는 광고가 하나도 없을 수도 있습니다. 그러므로 실제적으로 현재 적립 가능한 광고가 있는지 여부를 판단해서 버튼을 노출하는 것이 보다 바람직합니다.
+이를 위하여 현재 적립가능한 광고 정보를 확인하는 기능을 아래와 같이 제공합니다.
+
+##### Method (Objective-C)
+
+  - (void) queryAdvertiseCount: (id) target action: (SEL) action;
+
+##### Method (Swift)
+
+  - func queryAdvertiseCount(_ target:Any, action:Selector)
+
+##### Parameters
+
+| 파라메터 명칭 | 내용                                                         |
+| ------------- | ------------------------------------------------------------ |
+| target        | 결과를 받으면 이 객체의 action 메소드가 호출된다.            |
+| action        | 결과를 받으면 호출될 메소드를 지정한다. 메소드 호출 시 2개의 NSNumber 객체를 파라메터로 전달한다. 첫번째 파라메터에는 현재 적립 가능한 광고수가 담겨 있으며, 두번째 파라메터에는 적립가능한 포인트의 총합이 담겨 있다. |
+
+##### 적용예시
+
+```objective-c
+// Objective-C
+- (void) adCountReceived:(NSNumber *)count point:(NSNumber *)point {
+
+    if ([point integerValue] > 0) {
+        // 광고목록 버튼 보이기
+    }
+    else {
+        // 광고목록 버튼 숨기기
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    // 노출 광고 개수 등 정보 조회 (비동기 방식 호출)
+    [[TnkSession sharedInstance] queryAdvertiseCount:self action:@selector(adCountReceived:point:)];
+}
+```
+```swift
+// Swift
+@IBAction
+func onAdCountButtonClick() {
+    TnkSession.sharedInstance().queryAdvertiseCount(self, action: #selector(didReceivedAdCount(count:point:)))
+}
+
+@objc
+func didReceivedAdCount(count:NSNumber, point:NSNumber) {
+    print("### \(count), \(point)")
+}
+```
+
+### 다. 포인트 조회 및 인출 (포인트가 Tnk 서버에서 관리되는 경우)
 
 사용자가 광고참여를 통하여 획득한 포인트는 Tnk서버에서 관리되거나 앱의 자체서버에서 관리될 수 있습니다.
 
@@ -812,135 +941,6 @@ Tnk 서버에 적립되어 있는 사용자의 모든 포인트를 차감하고 
 }
 ```
 
-### 다. 그밖의 기능들
-
-#### TnkSession - queryPublishState
-
-Tnk 사이트의 [게시정보]에서 광고 게시 중지를 하게 되면 이후에는 사용자가 광고 목록 창을 띄워도 광고들이 나타나지 않습니다.
-그러므로 향후 광고 게시를 중지할 경우를 대비하여 화면에 충전소 버튼 자체를 보이지 않게 하는 기능을 갖추는 것이 바람직합니다.
-이를 위하여 현재 게시앱의 광고게시 상태를 조회하는 기능을 제공합니다.
-
-##### [비동기로 호출하기]
-
-###### Method (Objectvie-C)
-
-  - (void) queryPublishState: (id)target action: (SEL) action;
-
-###### Method (Swift)
-
-  - func queryPublishState(_ target:Any, action:Selector)
-
-###### Parameters
-
-| 파라메터 명칭 | 내용                                                         |
-| -------------------------- | --------------------------------------------------- |
-| target | 결과를 받으면 이 객체의 action 메소드가 호출된다.            |
-| action | 결과를 받으면 호출될 메소드를 지정한다. 메소드 호출 시 현재의 게시 상태 값이 파라메터로 전달되므로 메소드는 (NSNumber *) 파라메터를 하나 받을 수 있도록 정의한다.  전달되는 상태값들은 "tnksdk.h" 파일을 참고한다. |
-
-###### 적용예시
-
-```objective-c
-// Objective-C
-- (void) publishStateReceived:(NSNumber *) state {
-    // 상태값에 따라서 충전소 이동 버튼을 보이게 하거나 숨긴다.
-    if ([state integerValue] == TNK_STATE_YES) {
-        // 광고목록 버튼 보이기
-    }
-    else {
-        // 광고목록 버튼 숨기기
-    }
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-
-    // 게시앱 상태 조회 (비동기 방식 호출)
-    [[TnkSession sharedInstance] queryPublishState:self action:@selector(publishStateReceived:)];
-}
-```
-```swift
-// Swift
-@IBAction
-func onCheckPubStateButtonClick() {
-    TnkSession.sharedInstance().queryPublishState(self, action:#selector(didPublishStateReceived(state:)))
-}
-
-@objc
-func didPublishStateReceived(state:NSNumber) {
-    NSLog("didPublishStateReceived %@", state)
-    if state == 0 {
-        showOfferwallButton.isHidden = true
-    }
-    else {
-        showOfferwallButton.isHidden = false
-    }
-}
-```
-##### [동기방식으로 호출]
-
-###### Method
-
-- (NSInteger) queryPublishState;
-
-###### Return
-
-- 현재 게시 상태 값을 반환한다. (tnksdk.h 내용 참고)
-
-#### TnkSession - queryAdvertiseCount
-
-광고 게시 상태를 확인하여 충전소 버튼을 보이게하거나 안보이게 하는 것으로도 충분히 좋지만 현재 광고 게시 상태라 하더라도 사용자에게 지급될 수 없는 광고가 하나도 없을 수도 있습니다. 그러므로 실제적으로 현재 적립 가능한 광고가 있는지 여부를 판단해서 버튼을 노출하는 것이 보다 바람직합니다.
-이를 위하여 현재 적립가능한 광고 정보를 확인하는 기능을 아래와 같이 제공합니다.
-
-##### Method (Objective-C)
-
-  - (void) queryAdvertiseCount: (id) target action: (SEL) action;
-
-##### Method (Swift)
-
-  - func queryAdvertiseCount(_ target:Any, action:Selector)
-
-##### Parameters
-
-| 파라메터 명칭 | 내용                                                         |
-| ------------- | ------------------------------------------------------------ |
-| target        | 결과를 받으면 이 객체의 action 메소드가 호출된다.            |
-| action        | 결과를 받으면 호출될 메소드를 지정한다. 메소드 호출 시 2개의 NSNumber 객체를 파라메터로 전달한다. 첫번째 파라메터에는 현재 적립 가능한 광고수가 담겨 있으며, 두번째 파라메터에는 적립가능한 포인트의 총합이 담겨 있다. |
-
-##### 적용예시
-
-```objective-c
-// Objective-C
-- (void) adCountReceived:(NSNumber *)count point:(NSNumber *)point {
-
-    if ([point integerValue] > 0) {
-        // 광고목록 버튼 보이기
-    }
-    else {
-        // 광고목록 버튼 숨기기
-    }
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-
-    // 노출 광고 개수 등 정보 조회 (비동기 방식 호출)
-    [[TnkSession sharedInstance] queryAdvertiseCount:self action:@selector(adCountReceived:point:)];
-}
-```
-```swift
-// Swift
-@IBAction
-func onAdCountButtonClick() {
-    TnkSession.sharedInstance().queryAdvertiseCount(self, action: #selector(didReceivedAdCount(count:point:)))
-}
-
-@objc
-func didReceivedAdCount(count:NSNumber, point:NSNumber) {
-    print("### \(count), \(point)")
-}
-```
 ### 라. 스타일 설정하기
 
 광고목록 창은 SDK에서 제공하는 기본 스타일을 그대로 사용하셔도 무방하지만, 앱의 UI와 통일감 있도록 스타일을 정의할 수 있습니다.
