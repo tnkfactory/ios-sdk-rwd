@@ -572,6 +572,9 @@ TnkAdListView 생성하기
 
 @end
 ```
+##### TestOfferwallViewController 샘플 소스 (Swift)
+
+![Guide_05](./img/Guide_05.jpg)
 
 ### 나. 포인트 조회 및 인출
 
