@@ -651,9 +651,13 @@ Tnk서버에 적립되어 있는 사용자 포인트 값을 조회합니다. Tnk
 
 ##### [비동기로 호출하기]
 
-###### Method 
+###### Method (Objective-C)
 
   - (void) queryPoint: (id) target action: (SEL) action;
+
+###### Method (Swift)
+
+  - func queryPoint(_ target:Any, action:Selector)
 
 ###### Description
 
@@ -669,16 +673,31 @@ Tnk 서버에 적립되어 있는 사용자 포인트 값을 조회합니다. �
 ###### 적용예시
 
 ```objective-c
-- (void) pointReceived:(NSNumber *)point {
-    [self.userPoints setText:[point stringValue]]; 
-}
-
+// Objective-C
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
 
     // 현재 포인트 조회 (비동기 방식 호출)
     [[TnkSession sharedInstance] queryPoint:self action:@selector(pointReceived:)];
+}
+
+- (void) pointReceived:(NSNumber *)point {
+    [self.userPoints setText:[point stringValue]]; 
+}
+```
+```swift
+// Swift
+override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+
+    TnkSession.sharedInstance().queryPoint(self, action: #selector(pointReceived(_:)))
+}
+
+@objc
+func pointReceived(_ point:NSNumber) {
+    print("### point received \(point)")
+}
 ```
 
 ##### [동기방식으로 호출하기]
@@ -807,9 +826,13 @@ Tnk 사이트의 [게시정보]에서 광고 게시 중지를 하게 되면 이�
 
 ##### [비동기로 호출하기]
 
-###### Method 
+###### Method (Objectvie-C)
 
   - (void) queryPublishState: (id)target action: (SEL) action;
+
+###### Method (Swift)
+
+  - func queryPublishState(_ target:Any, action:Selector)
 
 ###### Parameters
 
@@ -821,6 +844,7 @@ Tnk 사이트의 [게시정보]에서 광고 게시 중지를 하게 되면 이�
 ###### 적용예시
 
 ```objective-c
+// Objective-C
 - (void) publishStateReceived:(NSNumber *) state {
     // 상태값에 따라서 충전소 이동 버튼을 보이게 하거나 숨긴다.
     if ([state integerValue] == TNK_STATE_YES) {
@@ -839,7 +863,24 @@ Tnk 사이트의 [게시정보]에서 광고 게시 중지를 하게 되면 이�
     [[TnkSession sharedInstance] queryPublishState:self action:@selector(publishStateReceived:)];
 }
 ```
+```swift
+// Swift
+@IBAction
+func onCheckPubStateButtonClick() {
+    TnkSession.sharedInstance().queryPublishState(self, action:#selector(didPublishStateReceived(state:)))
+}
 
+@objc
+func didPublishStateReceived(state:NSNumber) {
+    NSLog("didPublishStateReceived %@", state)
+    if state == 0 {
+        showOfferwallButton.isHidden = true
+    }
+    else {
+        showOfferwallButton.isHidden = false
+    }
+}
+```
 ##### [동기방식으로 호출]
 
 ###### Method
@@ -855,9 +896,13 @@ Tnk 사이트의 [게시정보]에서 광고 게시 중지를 하게 되면 이�
 광고 게시 상태를 확인하여 충전소 버튼을 보이게하거나 안보이게 하는 것으로도 충분히 좋지만 현재 광고 게시 상태라 하더라도 사용자에게 지급될 수 없는 광고가 하나도 없을 수도 있습니다. 그러므로 실제적으로 현재 적립 가능한 광고가 있는지 여부를 판단해서 버튼을 노출하는 것이 보다 바람직합니다.
 이를 위하여 현재 적립가능한 광고 정보를 확인하는 기능을 아래와 같이 제공합니다.
 
-##### Method 
+##### Method (Objective-C)
 
   - (void) queryAdvertiseCount: (id) target action: (SEL) action;
+
+##### Method (Swift)
+
+  - func queryAdvertiseCount(_ target:Any, action:Selector)
 
 ##### Parameters
 
@@ -869,6 +914,7 @@ Tnk 사이트의 [게시정보]에서 광고 게시 중지를 하게 되면 이�
 ##### 적용예시
 
 ```objective-c
+// Objective-C
 - (void) adCountReceived:(NSNumber *)count point:(NSNumber *)point {
 
     if ([point integerValue] > 0) {
@@ -887,7 +933,18 @@ Tnk 사이트의 [게시정보]에서 광고 게시 중지를 하게 되면 이�
     [[TnkSession sharedInstance] queryAdvertiseCount:self action:@selector(adCountReceived:point:)];
 }
 ```
+```swift
+// Swift
+@IBAction
+func onAdCountButtonClick() {
+    TnkSession.sharedInstance().queryAdvertiseCount(self, action: #selector(didReceivedAdCount(count:point:)))
+}
 
+@objc
+func didReceivedAdCount(count:NSNumber, point:NSNumber) {
+    print("### \(count), \(point)")
+}
+```
 ### 라. 스타일 설정하기
 
 광고목록 창은 SDK에서 제공하는 기본 스타일을 그대로 사용하셔도 무방하지만, 앱의 UI와 통일감 있도록 스타일을 정의할 수 있습니다.
