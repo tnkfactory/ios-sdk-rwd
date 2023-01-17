@@ -13,6 +13,9 @@ TnkAd SDK는 Tnk의 광고 네트워크 상에서 광고앱 이나 매체앱을 
 
 ### Update Notice
 
+* 2023.01.17
+  - v5.44 업데이트
+    - headerTextColor, detailHeaderTextColor 설정 동작안하는 버그 수정
 * 2022.12.26
   - v4.42 업데이트
     - queryAdvertiseCount 성능 개선
