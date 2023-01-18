@@ -16,8 +16,8 @@ TnkAd SDK는 Tnk의 광고 네트워크 상에서 광고앱 이나 매체앱을 
 * 2023.01.18
   - v4.45 업데이트
     - 상세 화면을 NavigationController의 Push 방식으로 띄우는 기능 추가
-       TnkSession.sharedInstance().detailPushNavigation = true
-       TnkSession.sharedInstance().detailPushBackLabel = “뒤로”    // Back 버튼 라벨, 원하는 문구로 설정
+      - TnkSession.sharedInstance().detailPushNavigation = true
+      - TnkSession.sharedInstance().detailPushBackLabel = “뒤로”    // Back 버튼 라벨, 원하는 문구로 설정
 * 2023.01.17
   - v4.44 업데이트
     - headerTextColor, detailHeaderTextColor 설정 동작안하는 버그 수정
